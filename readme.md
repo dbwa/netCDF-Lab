@@ -10,8 +10,8 @@ NetCDF Lab is an intuitive desktop application that simplifies NetCDF file manip
 - 🔍 Easy visualization of NetCDF file contents
 - ✏️ Direct editing of variables and attributes
 - 📊 Data visualization with customizable plots
-- 🌍 Multi-language support
-- 💾 Safe file handling with automatic backups
+- 🌍 Multi-language support (EN - FR)
+- 💾 Safe file handling
 - 📐 Simple and intuitive interface
 
 ## Installation
