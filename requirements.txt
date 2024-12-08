@@ -1,0 +1,6 @@
+PyQt6
+netCDF4
+xarray
+numpy
+matplotlib
+pandas
