@@ -58,6 +58,7 @@ class Translator:
             "delete": "Supprimer",
             "rename": "Renommer",
             "duplicate": "Dupliquer",
+            "delete_value": "Supprimer la valeur",
             
             # Panneau de données
             "netcdf_files": "Fichiers NetCDF",
@@ -147,6 +148,7 @@ class Translator:
             "delete": "Delete",
             "rename": "Rename",
             "duplicate": "Duplicate",
+            "delete_value": "Delete Value",
             
             # Data panel
             "netcdf_files": "NetCDF Files",

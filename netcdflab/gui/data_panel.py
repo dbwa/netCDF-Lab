@@ -34,6 +34,7 @@ class EditableTreeWidget(QTreeWidget):
 
 class DataPanel(QWidget):
     dataset_loaded = pyqtSignal(object, str)  # dataset, filename
+    file_loaded = pyqtSignal(str) #filename
     dataset_modified = pyqtSignal(str)  # filename
     visualization_requested = pyqtSignal(str, str, str, int)  # filename, var_name, dim_name, index
     
@@ -105,6 +106,7 @@ class DataPanel(QWidget):
             self.add_file_to_tree(filename, dataset)
             
             self.dataset_loaded.emit(dataset, filename)
+            self.file_loaded.emit(filename)
             
         except Exception as e:
             QMessageBox.critical(
@@ -332,6 +334,8 @@ class DataPanel(QWidget):
                         lambda checked=False, f=filename, v=var_name, d=dim_name, i=index: 
                             self._emit_visualization_request(f, v, d, i)
                     )
+                menu.addAction(self.translator.get_text("delete_value"),
+                             lambda: self.delete_value(filename, var_name, index))
                 
                 menu.addSeparator()
 
@@ -351,8 +355,8 @@ class DataPanel(QWidget):
                              lambda: self.tree.editItem(item, 0))
                 menu.addAction(self.translator.get_text("delete"), 
                              lambda: self.delete_variable(filename, var_name))
-                menu.addAction(self.translator.get_text("duplicate"), 
-                             lambda: self.duplicate_variable(filename, var_name))
+                #menu.addAction(self.translator.get_text("duplicate"), 
+                #             lambda: self.duplicate_variable(filename, var_name))
                 
                 menu.addSeparator()
                 menu.addAction("Créer une nouvelle variable", 

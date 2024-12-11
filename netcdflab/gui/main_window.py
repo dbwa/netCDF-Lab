@@ -26,6 +26,9 @@ class MainWindow(QMainWindow):
         
         # Configurer le reste de l'interface
         self.setup_ui()
+
+        # Signal de chargement de fichier
+        self.data_panel.file_loaded.connect(self.menu_bar.add_recent_file)
         
     def setup_ui(self):
         """Configure l'interface utilisateur"""

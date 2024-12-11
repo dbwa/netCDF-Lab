@@ -123,11 +123,6 @@ class MenuBar(QMenuBar):
         """Charger l'historique des fichiers récents"""
         self.recent_files = []
         
-        if not self.has_storage_access:
-            print("Pas d'accès au stockage - Historique désactivé")
-            self.update_recent_menu()
-            return
-            
         try:
             app_path = self.get_app_data_path()
             if app_path is None:
@@ -137,11 +132,15 @@ class MenuBar(QMenuBar):
             if os.path.exists(history_file):
                 with open(history_file, 'r') as f:
                     self.recent_files = json.load(f)
+                    # Filtrer les fichiers qui n'existent plus
+                    self.recent_files = [f for f in self.recent_files if os.path.exists(f)]
+                    
         except Exception as e:
+            print(f"Erreur lors du chargement de l'historique: {e}")
             self.recent_files = []
             
         self.update_recent_menu()
-    
+        
     def save_recent_files(self):
         """Sauvegarder l'historique des fichiers récents"""
         if not self.has_storage_access:
@@ -182,6 +181,7 @@ class MenuBar(QMenuBar):
             self.recent_menu.addAction(action)
             return
             
+        # Ajouter les fichiers récents existants
         for filename in self.recent_files:
             if os.path.exists(filename):
                 action = QAction(os.path.basename(filename), self)
